@@ -2,16 +2,13 @@ import { useForm} from 'react-hook-form';
 import { StyleSheet, Text, View, Controller, form } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 
-export default function Form(){
-    const navigation = useNavigation();
+export default function Form(nombre, setNombre, telefono, setTelefono, email, setEmail){
     const{control, handleSubmit, formState: {errors},} = useForm();
 
 
     
         const Entrada = () => {
-        navigation.navigate("TicketValidation", {
-        //la ifno a pasar
-        });
+      setEnviado 
         };
 return(
     <form onSubmit = {handleSubmit(onSubmit)}>
@@ -28,7 +25,7 @@ return(
         />
         <Controller
             control = {control}
-            name = "edad"
+            name = "edad" 
             rules = {{
                 required: 'ingrese su edad',
                 //entre 9 y 12
