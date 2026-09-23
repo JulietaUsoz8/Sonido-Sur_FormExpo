@@ -4,7 +4,7 @@ function InscripcionScreen() {
     const [nombre, setNombre] = useState("");
     const [email, setEmail] = useState("");
     const [telefono, setTelefono] = useState("");
-    const [Enviado, setEnviado] = useState(false);
+    const [Enviado, onEnviado] = useState(false);
 
     const formularioInicial = {
         nombre: "",
@@ -35,8 +35,7 @@ function InscripcionScreen() {
                 setEmail={setEmail}
                 telefono={telefono}
                 setTelefono={setTelefono}
-                Enviado = {Enviado}
-                setEnviado = {setEnviado}
+                onEnviado = {onEnviado}
             />
 ):(
             <TicketConfirmacion
@@ -45,7 +44,7 @@ function InscripcionScreen() {
                 telefono={telefono}
 
 
-                      datos={formulario}
+                      datos={Enviar}
                     onVolver={limpiarFormulario}
             />
         
