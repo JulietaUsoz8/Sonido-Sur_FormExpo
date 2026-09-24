@@ -1,24 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import Form from './src/Form';
-import TicketConfirmation from './src/TicketConfirmation';
+import InscripcionScreen from './src/InscripcionScreen';
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-            <Stack.Screen name="Form" component={Form} ></Stack.Screen>
-           <Stack.Screen name="TicketConfirmation" component={TicketConfirmation} ></Stack.Screen>
-
-
-      </Stack.Navigator>
-
-
-    </NavigationContainer>
+    <InscripcionScreen></InscripcionScreen>
   );
 }
 

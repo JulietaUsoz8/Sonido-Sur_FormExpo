@@ -6,7 +6,8 @@ import {
     TextInput,
     Pressable
 } from 'react-native';
-
+import { useState, useEffect } from "react";
+import Loading_2 from "../assets/Loading_2.gif"
 export default function Form({
     nombre,
     setNombre,
@@ -14,9 +15,22 @@ export default function Form({
     setTelefono,
     email,
     setEmail,
-    onEnviar
+    setEnviado
 }) {
+     const [segundos, setSegundos] = useState(0);
 
+  useEffect(() => {
+    const intervalo = setInterval(() => {
+      setSegundos((prev) => prev + 1);
+    }, 1000); // 1000 milisegundos = 1 segundo
+
+    // Limpiamos el intervalo cuando el componente se desmonte
+    return () => clearInterval(intervalo);
+  }, []);
+
+  // Condición para saber si ya pasó al menos un segundo
+  const pasoUnSegundo = segundos >= 1;
+/////////////////////////////////////////
     const {
         control,
         handleSubmit,
@@ -37,7 +51,7 @@ export default function Form({
         setTelefono(datos.telefono);
         setEmail(datos.email);
 
-        onEnviar(datos);
+        setEnviado(true);
     };
 
     return (
@@ -86,7 +100,7 @@ export default function Form({
                 rules={{
                     required: "Ingrese su edad",
                     min: {
-                        value: 18,
+                        value: 8,
                         message: "Debe ser mayor de 18 años"
                     },
                     max: {
@@ -216,7 +230,7 @@ export default function Form({
             )}
 
 
-            {/* ENVIAR */}
+            {segundos >= 3 &&(
             <Pressable
                 style={styles.button}
                 onPress={handleSubmit(Entrada)}
@@ -225,7 +239,7 @@ export default function Form({
                     Enviar
                 </Text>
             </Pressable>
-
+): (<Loading_2></Loading_2>)}
         </View>
     );
 }
