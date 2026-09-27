@@ -1,4 +1,5 @@
 import { useForm, Controller } from 'react-hook-form';
+import { LinearGradient } from 'expo-linear-gradient';
 import {
     StyleSheet,
     Text,
@@ -55,11 +56,13 @@ export default function Form({
     };
 
     return (
-        <View style={styles.container}>
+   <LinearGradient
+       colors={["#142030", "#1E3442", "#FF5C8D"]}
+       locations={[0, 0.65, 1]}
+       style={styles.container}
+   > 
 
-            {/* NOMBRE */}
-            <Text>Nombre</Text>
-
+            <Text style={styles.text}>Nombre</Text>
             <Controller
                 control={control}
                 name="nombre"
@@ -77,6 +80,7 @@ export default function Form({
                             errors.nombre && styles.inputError
                         ]}
                         placeholder="Ingrese su nombre"
+                        placeholderTextColor="#85A3B2"
                         value={value}
                         onChangeText={onChange}
                         onBlur={onBlur}
@@ -91,9 +95,7 @@ export default function Form({
             )}
 
 
-            {/* EDAD */}
-            <Text>Edad</Text>
-
+            <Text style={styles.text}>Edad</Text>
             <Controller
                 control={control}
                 name="edad"
@@ -115,6 +117,7 @@ export default function Form({
                             errors.edad && styles.inputError
                         ]}
                         placeholder="Ingrese su edad"
+                        placeholderTextColor="#85A3B2"
                         keyboardType="numeric"
                         value={value}
                         onChangeText={onChange}
@@ -130,9 +133,7 @@ export default function Form({
             )}
 
 
-            {/* EMAIL */}
-            <Text>Email</Text>
-
+            <Text style={styles.text}>Email</Text>
             <Controller
                 control={control}
                 name="email"
@@ -150,6 +151,7 @@ export default function Form({
                             errors.email && styles.inputError
                         ]}
                         placeholder="ejemplo@gmail.com"
+                        placeholderTextColor="#85A3B2"
                         keyboardType="email-address"
                         autoCapitalize="none"
                         value={value}
@@ -166,9 +168,7 @@ export default function Form({
             )}
 
 
-            {/* TELEFONO */}
-            <Text>Teléfono</Text>
-
+            <Text style={styles.text}>Teléfono</Text>
             <Controller
                 control={control}
                 name="telefono"
@@ -186,6 +186,7 @@ export default function Form({
                             errors.telefono && styles.inputError
                         ]}
                         placeholder="Ingrese su teléfono"
+                        placeholderTextColor="#85A3B2"
                         keyboardType="numeric"
                         value={value}
                         onChangeText={onChange}
@@ -201,9 +202,7 @@ export default function Form({
             )}
 
 
-            {/* TIPO DE ENTRADA */}
-            <Text>Tipo de entrada</Text>
-
+            <Text style={styles.text}>Tipo de entrada</Text>
             <Controller
                 control={control}
                 name="tipoEntrada"
@@ -217,6 +216,7 @@ export default function Form({
                             errors.tipoEntrada && styles.inputError
                         ]}
                         placeholder="General / VIP"
+                        placeholderTextColor="#85A3B2"
                         value={value}
                         onChangeText={onChange}
                     />
@@ -230,55 +230,73 @@ export default function Form({
             )}
 
 
-            {segundos >= 3 &&(
-            <Pressable
-                style={styles.button}
-                onPress={handleSubmit(Entrada)}
-            >
-                <Text style={styles.buttonText}>
-                    Enviar
-                </Text>
-            </Pressable>
-): (<Loading_2></Loading_2>)}
-        </View>
+ {segundos >= 3 ? (
+    <Pressable
+        style={styles.button}
+        onPress={handleSubmit(Entrada)}
+    >
+        <Text style={styles.buttonText}>
+            Enviar
+        </Text>
+    </Pressable>
+) : (
+<img
+    src={Loading_2}
+    style={{
+        width: 80,
+        height: 80
+    }}
+/>)}
+        </LinearGradient>
     );
 }
 
-const styles = StyleSheet.create({
-
-    container: {
-        padding: 20,
-        gap: 5
-    },
-
-    input: {
-        borderWidth: 1,
-        borderColor: "#999",
-        borderRadius: 8,
-        padding: 10,
-        marginBottom: 5
-    },
-
-    inputError: {
-        borderColor: "red",
-        borderWidth: 2
-    },
-
-    error: {
-        color: "red",
-        marginBottom: 10
-    },
-
-    button: {
-        backgroundColor: "#222",
-        padding: 15,
-        borderRadius: 8,
-        alignItems: "center",
-        marginTop: 15
-    },
-
-    buttonText: {
-        color: "white",
-        fontWeight: "bold"
-    }
-});
+const styles = StyleSheet.create({ 
+    container: 
+    { 
+        flex: 1, backgroundColor: "#142030",
+     paddingHorizontal: 24,
+      paddingVertical: 28, 
+      gap: 6 
+    }, 
+      input: { 
+        backgroundColor: "#1E3442", 
+        borderWidth: 1, borderColor: "#85A3B2", 
+        borderRadius: 12, 
+        paddingHorizontal: 16, 
+        paddingVertical: 13,
+         marginBottom: 8,
+          color: "#E9D8C8", 
+          fontSize: 16
+         }, 
+    inputError: { 
+            borderColor: "#FF5C8D", 
+            borderWidth: 2
+         }, 
+     error: {
+                 color: "#FF5C8D", 
+                 fontSize: 13, 
+                 fontWeight: "600", 
+                 marginTop: -4, 
+                 marginBottom: 8 
+            }, 
+        button: { 
+            backgroundColor: "#732553", 
+            paddingVertical: 16, borderRadius: 12, 
+            alignItems: "center", 
+            justifyContent: "center", 
+            marginTop: 18, 
+            borderWidth: 1, 
+            borderColor: "#FF5C8D", 
+            elevation: 4 
+        }, 
+        buttonText: 
+        { 
+            color: "#E9D8C8", 
+            fontSize: 16, 
+            fontWeight: "bold", 
+            letterSpacing: 0.5 } ,
+        text:{
+                  color: "#E9D8C8", 
+            }
+        });
