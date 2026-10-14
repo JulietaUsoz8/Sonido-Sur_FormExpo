@@ -16,8 +16,27 @@ export default function Form({
     setTelefono,
     email,
     setEmail,
-    setEnviado
+    onEnviar
 }) {
+
+const getData = async () => {
+  try {
+    const value = await AsyncStorage.getItem('ultimoEmail');
+    if (value !== null) {
+        const emailViejo = JSON.parse(value);
+        console.log(usuarioParseado);
+    }
+  } catch(e) {
+    console.error('Error al leer', e);
+  }
+};
+  
+
+
+
+
+
+
      const [segundos, setSegundos] = useState(0);
 
   useEffect(() => {
@@ -52,8 +71,9 @@ export default function Form({
         setTelefono(datos.telefono);
         setEmail(datos.email);
 
-        setEnviado(true);
-    };
+onEnviar();
+
+};
 
     return (
    <LinearGradient
@@ -133,7 +153,7 @@ export default function Form({
             )}
 
 
-            <Text style={styles.text}>Email</Text>
+            <Text style={styles.text}>{email}</Text>
             <Controller
                 control={control}
                 name="email"

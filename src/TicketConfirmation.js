@@ -10,17 +10,6 @@ export default function TicketConfirmation({nombre, email, telefono, onVolver}){
 
    // const email = await AsyncStorage.getItem("ultimoEmail");
 
-const getData = async () => {
-  try {
-    const value = await AsyncStorage.getItem('my_key');
-    if (value !== null) {
-      // Data previously stored
-    }
-  } catch(e) {
-    // Error reading error
-  }
-};
-  
     return(
 <LinearGradient
     colors={["#142030", "#1E3442", "#FF5C8D"]}

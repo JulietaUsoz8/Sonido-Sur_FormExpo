@@ -27,17 +27,36 @@ function InscripcionScreen() {
         setEnviado(false);
     };
 
-    /*  await AsyncStorage.setItem(
-      "ultimoEmail",
-      formulario.email
-  );*/
-    const storeData = async (email) => {
+    
+  useEffect(() => {
+        const cargarEmail = async () => {
+            try {
+                const emailGuardado =
+                    await AsyncStorage.getItem("ultimoEmail");
+
+                if (emailGuardado !== null) {
+                    setEmail(emailGuardado);
+                }
+            } catch (error) {
+                console.log("Error al recuperar el email");
+            }
+        };
+
+        cargarEmail();
+    }, []);
+   const guardarEmail = async () => {
         try {
-            await AsyncStorage.setItem('ultimoEmail', formulario.email);
-        } catch (e) {
-            // Saving error
+            await AsyncStorage.setItem("ultimoEmail", email);
+        } catch (error) {
+            console.log("Error al guardar el email");
         }
     };
+
+    const handleEnviar = async () => {
+        await guardarEmail();
+        setEnviado(true);
+    };
+    
     return (
         <View>
             {!enviado ? (
@@ -49,7 +68,7 @@ function InscripcionScreen() {
                     setEmail={setEmail}
                     telefono={telefono}
                     setTelefono={setTelefono}
-                    setEnviado={setEnviado}
+                    onEnviar={handleEnviar}
                 />
             ) : (
                 <TicketConfirmation
